@@ -1,0 +1,42 @@
+[project]
+name = "brightway-forwast"
+version = "0.1.0"
+description = "FORWAST LCA explorer with Brightway2 and Streamlit"
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    # --- Core Brightway Stack (Strictly Pinned) ---
+    "brightway2==2.4.7",
+    "bw2analyzer==0.10",
+    "bw2calc==1.8.2",
+    "bw2data==3.6.6",
+    "bw2io==0.8.12",
+    "numpy==1.26.4",  # Critical: BW2 breaks on newer numpy
+    "scipy<1.11",     # Critical: BW2 breaks on newer scipy
+    "stats-arrays==1.0",
+
+    # --- UI & Runtime ---
+    "streamlit>=1.30",
+    "matplotlib>=3.7,<3.9",
+    "pandas>=2.0,<2.3",
+    "plotly>=5.18",
+    "supabase>=2.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# --- FIX: Tell Hatch how to build the flat layout ---
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+# --- FIX: Exclude the database folders from the build package ---
+[tool.hatch.build]
+exclude = [
+  "bw_data",
+  "bw_data_local",
+  ".git",
+  "__pycache__"
+]

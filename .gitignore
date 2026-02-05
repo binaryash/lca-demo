@@ -1,0 +1,19 @@
+# --- Python & UV ---
+__pycache__/
+*.pyc
+.venv/
+uv.lock
+
+# --- Brightway / Database Data ---
+# Ignore the local fallback folder so you don't push 500MB+ to Git
+bw_data_local/
+# Ignore the baked folder if testing docker locally
+bw_data/
+
+# --- IDE & System ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- Streamlit ---
+.streamlit/
