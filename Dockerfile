@@ -13,9 +13,9 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 WORKDIR /app
 
 # 3. Install Dependencies
-# Copy BOTH configuration files
+# Copy both config files first
 COPY pyproject.toml .
-COPY README.md .   <-- FIXED: This file is required by pyproject.toml
+COPY README.md .
 
 # Create venv and install
 RUN uv venv && uv pip install .
